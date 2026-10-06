@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield</title>
+
+    <!-- Tailwind CSS (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+            [hidden] { display: none !important; }
+        }
+        @layer components {
+            .btn { @apply cursor-pointer rounded-lg bg-sky-600 px-6 py-3 font-bold text-white transition hover:bg-sky-700 disabled:cursor-default disabled:opacity-60; }
+            .btn-center { @apply mx-auto mt-[30px] block cursor-pointer rounded-lg bg-sky-600 px-6 py-3 font-bold text-white transition hover:bg-sky-700 disabled:cursor-default disabled:opacity-60; }
+            .btn-choice { @apply cursor-pointer rounded-lg border-2 border-slate-300 bg-slate-100 px-6 py-3 font-bold text-slate-900 transition hover:bg-sky-100 aria-pressed:border-sky-600 aria-pressed:bg-sky-600 aria-pressed:text-white; }
+            .field { @apply w-full rounded-lg border border-slate-300 p-3 text-base; }
+            .field-label { @apply mb-2 block font-bold; }
+            .hint { @apply mt-2 text-sm text-slate-500; }
+            .result { @apply mt-4 text-center font-bold; }
+            .sec-title { @apply mb-4 text-center text-[32px] font-bold max-[480px]:text-[26px]; }
+            .sec-intro { @apply mx-auto mb-10 max-w-[700px] text-center; }
+            .card-title { @apply mb-2.5 text-[1.17em] font-bold text-sky-700; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-[Arial,sans-serif] leading-relaxed text-gray-800">
+
+<header class="sticky top-0 z-[1000] bg-slate-900 text-white">
+    <nav class="mx-auto flex max-w-[1200px] flex-wrap items-center justify-between px-[8%] py-[18px]">
+        <h1 class="logo text-2xl font-bold">CyberShield</h1>
+        <button id="menu-btn" class="rounded-lg border border-sky-400 px-3 py-1.5 text-[22px] leading-none md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">&#9776;</button>
+        <ul id="nav-menu" class="hidden w-full flex-col items-center gap-3 pt-4 md:flex md:w-auto md:flex-row md:gap-[25px] md:pt-0">
+            <li><a class="text-[15px] hover:text-sky-400" href="#home">Home</a></li>
+            <li><a class="text-[15px] hover:text-sky-400" href="#checklist">Security Checklist</a></li>
+            <li><a class="text-[15px] hover:text-sky-400" href="#social-engineering">Social Engineering</a></li>
+            <li><a class="text-[15px] hover:text-sky-400" href="#password">Password Security</a></li>
+            <li><a class="text-[15px] hover:text-sky-400" href="#help">Need Help?</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HOME -->
+    <section id="home" class="flex min-h-[500px] scroll-mt-20 flex-col items-start justify-center bg-sky-100 px-[8%] py-[70px] max-md:min-h-[450px] max-md:px-[6%] max-md:py-[50px]">
+        <h1 id="title" class="mb-5 max-w-[700px] text-5xl font-bold leading-[1.2] text-slate-900 max-md:text-4xl max-[480px]:text-[30px]">Stay Safe in the Digital World</h1>
+        <p id="subtitle" class="mb-[30px] max-w-[650px] text-lg max-md:text-base">Learn how to protect yourself from digital threats.</p>
+        <a href="#checklist" class="inline-block rounded-lg bg-sky-600 px-[22px] py-3 font-bold text-white hover:bg-sky-700">Start the Checklist</a>
+        <button id="detail-btn" class="mt-5 cursor-pointer rounded-lg border-2 border-sky-600 px-6 py-3 font-bold text-sky-700 transition hover:bg-sky-600 hover:text-white" aria-expanded="false">Why does this matter?</button>
+        <p id="home-detail" class="mt-4 max-w-[650px] rounded-r-lg border-l-4 border-sky-600 bg-white px-[18px] py-[15px]" hidden>Most attacks start with a message that looks normal: a link, a file or a request for a password. A few seconds of checking before you click is often enough to stop them.</p>
+    </section>
+
+    <!-- FEATURE 1: FILE & LINK AUTHENTICITY CHECKLIST -->
+    <section id="checklist" class="scroll-mt-20 bg-white px-[8%] py-[70px] max-md:px-[6%] max-md:py-[50px]">
+        <h2 class="sec-title">File &amp; Link Authenticity Checklist</h2>
+        <p class="sec-intro">An interactive guide to find out if a link or an .apk / .exe file you received is safe or dangerous.</p>
+
+        <div class="mx-auto mb-10 max-w-[700px] rounded-xl bg-slate-100 p-[25px]">
+            <h3 class="mb-3 text-[1.17em] font-bold text-sky-700">Step 1: Scan a link or file name</h3>
+            <label class="field-label" for="scan-input">Paste the link or type the file name</label>
+            <input type="text" id="scan-input" class="field" placeholder="e.g. http://paypal-login.xyz/verify  or  invoice.pdf.exe">
+            <button id="scan-btn" class="btn-center">Scan</button>
+            <p class="hint">Nothing is sent anywhere. The check runs in your browser and only looks for common warning signs.</p>
+
+            <div id="scan-result" class="mt-5 rounded-lg border-l-[6px] border-slate-400 bg-white px-5 py-[18px] data-[state=danger]:border-red-700 data-[state=risky]:border-amber-700 data-[state=safe]:border-green-700" hidden>
+                <p id="scan-verdict" class="mb-2 text-xl font-bold"></p>
+                <ul id="scan-findings" class="list-disc pl-5"></ul>
+            </div>
+        </div>
+
+        <h3 class="mx-auto mb-[15px] max-w-[700px] text-[22px] font-bold">Step 2: Answer the checklist</h3>
+        <p class="hint mx-auto mb-4 max-w-[700px] text-center">Tick only the statements that are true for the message or file you received.</p>
+        <ul class="mx-auto max-w-[700px]">
+            <li class="mb-3 rounded-lg border-l-[5px] border-transparent bg-slate-100 px-5 py-[15px] data-[state=off]:border-red-600 data-[state=ok]:border-green-600 data-[state=off]:bg-red-100"><label><input type="checkbox" class="check-item mr-2.5" data-expect="yes">I know the sender and the address is spelled correctly.</label></li>
+            <li class="mb-3 rounded-lg border-l-[5px] border-transparent bg-slate-100 px-5 py-[15px] data-[state=off]:border-red-600 data-[state=ok]:border-green-600 data-[state=off]:bg-red-100"><label><input type="checkbox" class="check-item mr-2.5" data-expect="yes">The link starts with https:// and the domain matches the real company.</label></li>
+            <li class="mb-3 rounded-lg border-l-[5px] border-transparent bg-slate-100 px-5 py-[15px] data-[state=off]:border-red-600 data-[state=ok]:border-green-600 data-[state=off]:bg-red-100"><label><input type="checkbox" class="check-item mr-2.5" data-expect="no">The message pressures me to act right now (for example "your account will be locked in 24 hours").</label></li>
+            <li class="mb-3 rounded-lg border-l-[5px] border-transparent bg-slate-100 px-5 py-[15px] data-[state=off]:border-red-600 data-[state=ok]:border-green-600 data-[state=off]:bg-red-100"><label><input type="checkbox" class="check-item mr-2.5" data-expect="no">It asks for my password, an OTP code, or a payment.</label></li>
+            <li class="mb-3 rounded-lg border-l-[5px] border-transparent bg-slate-100 px-5 py-[15px] data-[state=off]:border-red-600 data-[state=ok]:border-green-600 data-[state=off]:bg-red-100"><label><input type="checkbox" class="check-item mr-2.5" data-expect="yes">I expected this file, and it comes from an official store or website.</label></li>
+            <li class="mb-3 rounded-lg border-l-[5px] border-transparent bg-slate-100 px-5 py-[15px] data-[state=off]:border-red-600 data-[state=ok]:border-green-600 data-[state=off]:bg-red-100"><label><input type="checkbox" class="check-item mr-2.5" data-expect="no">The file is an .apk / .exe, or has a double extension like invoice.pdf.exe.</label></li>
+            <li class="mb-3 rounded-lg border-l-[5px] border-transparent bg-slate-100 px-5 py-[15px] data-[state=off]:border-red-600 data-[state=ok]:border-green-600 data-[state=off]:bg-red-100"><label><input type="checkbox" class="check-item mr-2.5" data-expect="yes">I hovered over the link and the real address matches the text shown.</label></li>
+        </ul>
+        <button id="check-btn" class="btn-center">Check My Result</button>
+        <p id="checklist-result" class="result"></p>
+    </section>
+
+    <!-- FEATURE 2: SOCIAL ENGINEERING EXPLAINER -->
+    <section id="social-engineering" class="grid scroll-mt-20 grid-cols-4 gap-5 bg-slate-100 px-[8%] py-[70px] max-md:grid-cols-2 max-md:px-[6%] max-md:py-[50px] max-[480px]:grid-cols-1">
+        <h2 class="sec-title col-span-full">Social Engineering Explainer</h2>
+        <p class="sec-intro col-span-full">Attackers trick people instead of hacking machines. Press Play on each card to watch how the scam unfolds.</p>
+
+        <div class="col-span-full mx-auto mb-2.5 w-full max-w-[500px]">
+            <label class="field-label" for="search-input">Search threats</label>
+            <input type="text" id="search-input" class="field" placeholder="Try: sms, usb, email, loan..." autocomplete="off">
+            <p id="search-info" class="hint"></p>
+        </div>
+
+        <article class="attack-card flex flex-col rounded-xl bg-white p-6 shadow-md max-[480px]:p-5" data-keywords="email link login fake account password">
+            <span class="mb-2.5 self-start rounded-full bg-sky-100 px-2.5 py-[3px] text-[13px] font-bold text-sky-700">Email</span>
+            <h3 class="card-title">Phishing</h3>
+            <p>A fake email pretends to be a real company to steal your login details.</p>
+            <ol class="mb-1 mt-4 list-none p-0">
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">1</span>An email says "Your account will be locked in 24 hours!"</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">2</span>You click the link inside.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">3</span>A fake login page, copied from the real one, opens.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">4</span>You type your password and the attacker receives it.</li>
+            </ol>
+            <p class="redflag mt-2 rounded-lg bg-green-100 px-3 py-2.5 text-sm text-green-900" hidden>Red flags: urgent threats, a sender address that does not match the company, and a link that goes to another domain.</p>
+            <div class="mt-auto pt-4 text-center"><button class="btn play-btn">Play</button></div>
+        </article>
+
+        <article class="attack-card flex flex-col rounded-xl bg-white p-6 shadow-md max-[480px]:p-5" data-keywords="usb download free app malware install">
+            <span class="mb-2.5 self-start rounded-full bg-sky-100 px-2.5 py-[3px] text-[13px] font-bold text-sky-700">Free stuff</span>
+            <h3 class="card-title">Baiting</h3>
+            <p>Something tempting is left for you to find, such as a free download or a USB drive.</p>
+            <ol class="mb-1 mt-4 list-none p-0">
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">1</span>You find a USB drive labelled "Salary 2026" or see a "free premium app" ad.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">2</span>Curiosity wins and you plug it in or install it.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">3</span>Malware installs silently in the background.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">4</span>The attacker gets access to your files and accounts.</li>
+            </ol>
+            <p class="redflag mt-2 rounded-lg bg-green-100 px-3 py-2.5 text-sm text-green-900" hidden>Red flags: "too good to be true" offers and unknown devices. Never plug in a USB you did not buy, and install apps only from official stores.</p>
+            <div class="mt-auto pt-4 text-center"><button class="btn play-btn">Play</button></div>
+        </article>
+
+        <article class="attack-card flex flex-col rounded-xl bg-white p-6 shadow-md max-[480px]:p-5" data-keywords="sms text message chat short link apk parcel">
+            <span class="mb-2.5 self-start rounded-full bg-sky-100 px-2.5 py-[3px] text-[13px] font-bold text-sky-700">SMS</span>
+            <h3 class="card-title">Smishing</h3>
+            <p>Phishing sent by text message or chat, often with a short link.</p>
+            <div class="my-3 rounded-[14px_14px_14px_2px] bg-slate-200 px-3.5 py-2.5 text-sm">Your parcel is on hold. Pay the Rp5.000 fee at bit.ly/cek-paket</div>
+            <ol class="mb-1 mt-4 list-none p-0">
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">1</span>An urgent SMS arrives from an unknown number.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">2</span>You tap the shortened link.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">3</span>A fake payment page or an .apk download opens.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">4</span>Your card details are stolen, or the app takes over your phone.</li>
+            </ol>
+            <p class="redflag mt-2 rounded-lg bg-green-100 px-3 py-2.5 text-sm text-green-900" hidden>Red flags: unknown sender, a shortened link, and a request for a small payment. Never install an .apk sent by SMS or chat.</p>
+            <div class="mt-auto pt-4 text-center"><button class="btn play-btn">Play</button></div>
+        </article>
+
+        <article class="attack-card flex flex-col rounded-xl bg-white p-6 shadow-md max-[480px]:p-5" data-keywords="personal data loan stolen account privacy">
+            <span class="mb-2.5 self-start rounded-full bg-sky-100 px-2.5 py-[3px] text-[13px] font-bold text-sky-700">Personal data</span>
+            <h3 class="card-title">Identity Theft</h3>
+            <p>A criminal uses your personal information pretending to be you.</p>
+            <ol class="mb-1 mt-4 list-none p-0">
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">1</span>The attacker collects your name, birth date and phone number from public posts or leaked data.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">2</span>They use it to answer security questions or to trick customer support.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">3</span>They take over your accounts or apply for loans in your name.</li>
+                <li class="group relative mb-2.5 -translate-x-2 rounded-lg bg-slate-100 py-2.5 pl-11 pr-3 text-sm opacity-25 transition duration-500 motion-reduce:transition-none data-[show=true]:translate-x-0 data-[show=true]:bg-red-100 data-[show=true]:opacity-100"><span class="absolute left-2.5 top-[9px] size-6 rounded-full bg-slate-400 text-center text-[13px] font-bold leading-6 text-white group-data-[show=true]:bg-red-600">4</span>You are left with debt, lost accounts and a long recovery.</li>
+            </ol>
+            <p class="redflag mt-2 rounded-lg bg-green-100 px-3 py-2.5 text-sm text-green-900" hidden>Protect yourself: share less publicly, turn on two-factor authentication, and check your accounts for activity you do not recognise.</p>
+            <div class="mt-auto pt-4 text-center"><button class="btn play-btn">Play</button></div>
+        </article>
+
+        <p id="no-results" class="col-span-full text-center font-bold text-amber-700" hidden>No threat matches your search. Try another word.</p>
+    </section>
+
+    <!-- FEATURE 3: PASSWORD MANAGER EDUCATION -->
+    <section id="password" class="scroll-mt-20 bg-white px-[8%] py-[70px] max-md:px-[6%] max-md:py-[50px]">
+        <h2 class="sec-title">Password Manager</h2>
+        <p class="sec-intro">Never use one password for every account. Learn why in four short interactive steps.</p>
+
+        <!-- STEP 1 -->
+        <article class="mx-auto my-5 max-w-[800px] rounded-xl bg-white p-6 shadow-md max-[480px]:p-5">
+            <span class="mb-2 inline-block rounded-full bg-sky-600 px-3 py-[3px] text-[13px] font-bold text-white">Step 1</span>
+            <h3 class="card-title">See what happens when one site is hacked</h3>
+            <p>Pick how you store your passwords, then click any account to hack that site.</p>
+
+            <div class="my-[15px] flex flex-wrap gap-2.5">
+                <button class="btn-choice mode-btn" data-mode="same" aria-pressed="true">Same password everywhere</button>
+                <button class="btn-choice mode-btn" data-mode="unique" aria-pressed="false">Unique password for each</button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5" id="account-list">
+                <button class="acct group flex cursor-pointer flex-col items-center gap-1.5 rounded-lg border-2 border-transparent bg-slate-100 px-2 py-3 text-center leading-snug text-slate-900 transition hover:bg-sky-100 data-[state=blocked]:border-green-600 data-[state=hacked]:border-red-600 data-[state=blocked]:bg-green-100 data-[state=hacked]:bg-red-100"><strong class="block">Email</strong><code class="acct-pass block max-w-full break-all text-[13px] leading-tight"></code><small class="acct-status block text-sm font-bold leading-tight text-slate-500 group-data-[state=blocked]:text-green-700 group-data-[state=hacked]:text-red-700">Click to hack</small></button>
+                <button class="acct group flex cursor-pointer flex-col items-center gap-1.5 rounded-lg border-2 border-transparent bg-slate-100 px-2 py-3 text-center leading-snug text-slate-900 transition hover:bg-sky-100 data-[state=blocked]:border-green-600 data-[state=hacked]:border-red-600 data-[state=blocked]:bg-green-100 data-[state=hacked]:bg-red-100"><strong class="block">Social media</strong><code class="acct-pass block max-w-full break-all text-[13px] leading-tight"></code><small class="acct-status block text-sm font-bold leading-tight text-slate-500 group-data-[state=blocked]:text-green-700 group-data-[state=hacked]:text-red-700">Click to hack</small></button>
+                <button class="acct group flex cursor-pointer flex-col items-center gap-1.5 rounded-lg border-2 border-transparent bg-slate-100 px-2 py-3 text-center leading-snug text-slate-900 transition hover:bg-sky-100 data-[state=blocked]:border-green-600 data-[state=hacked]:border-red-600 data-[state=blocked]:bg-green-100 data-[state=hacked]:bg-red-100"><strong class="block">Online shop</strong><code class="acct-pass block max-w-full break-all text-[13px] leading-tight"></code><small class="acct-status block text-sm font-bold leading-tight text-slate-500 group-data-[state=blocked]:text-green-700 group-data-[state=hacked]:text-red-700">Click to hack</small></button>
+                <button class="acct group flex cursor-pointer flex-col items-center gap-1.5 rounded-lg border-2 border-transparent bg-slate-100 px-2 py-3 text-center leading-snug text-slate-900 transition hover:bg-sky-100 data-[state=blocked]:border-green-600 data-[state=hacked]:border-red-600 data-[state=blocked]:bg-green-100 data-[state=hacked]:bg-red-100"><strong class="block">Banking</strong><code class="acct-pass block max-w-full break-all text-[13px] leading-tight"></code><small class="acct-status block text-sm font-bold leading-tight text-slate-500 group-data-[state=blocked]:text-green-700 group-data-[state=hacked]:text-red-700">Click to hack</small></button>
+                <button class="acct group flex cursor-pointer flex-col items-center gap-1.5 rounded-lg border-2 border-transparent bg-slate-100 px-2 py-3 text-center leading-snug text-slate-900 transition hover:bg-sky-100 data-[state=blocked]:border-green-600 data-[state=hacked]:border-red-600 data-[state=blocked]:bg-green-100 data-[state=hacked]:bg-red-100"><strong class="block">Cloud storage</strong><code class="acct-pass block max-w-full break-all text-[13px] leading-tight"></code><small class="acct-status block text-sm font-bold leading-tight text-slate-500 group-data-[state=blocked]:text-green-700 group-data-[state=hacked]:text-red-700">Click to hack</small></button>
+            </div>
+            <p id="breach-log" class="result"></p>
+        </article>
+
+        <!-- STEP 2 -->
+        <article class="mx-auto my-5 max-w-[800px] rounded-xl bg-white p-6 shadow-md max-[480px]:p-5">
+            <span class="mb-2 inline-block rounded-full bg-sky-600 px-3 py-[3px] text-[13px] font-bold text-white">Step 2</span>
+            <h3 class="card-title">Try a password manager</h3>
+            <p>A password manager keeps every password in an encrypted vault. You remember only one master password.</p>
+
+            <div id="vault-lock" class="mt-3">
+                <label class="field-label" for="master-input">Create a master password (at least 12 characters)</label>
+                <input type="password" id="master-input" class="field" autocomplete="new-password" placeholder="Try a long passphrase">
+                <p id="master-hint" class="hint"></p>
+                <div class="flex flex-wrap justify-center gap-3"><button id="unlock-btn" class="btn mt-[18px]">Unlock vault</button></div>
+            </div>
+
+            <div id="vault" class="mt-3" hidden>
+                <p class="hint">Vault unlocked. Press Generate to give each account its own strong password.</p>
+                <ul id="vault-list" class="mt-3"></ul>
+                <p id="vault-progress" class="result"></p>
+            </div>
+        </article>
+
+        <!-- STEP 3 -->
+        <article class="mx-auto my-5 max-w-[800px] rounded-xl bg-white p-6 shadow-md max-[480px]:p-5">
+            <span class="mb-2 inline-block rounded-full bg-sky-600 px-3 py-[3px] text-[13px] font-bold text-white">Step 3</span>
+            <h3 class="card-title">Myth or Fact?</h3>
+            <p id="quiz-progress" class="hint"></p>
+            <p id="quiz-statement" class="my-2.5 text-[19px] font-bold"></p>
+            <div class="flex flex-wrap justify-center gap-3" id="quiz-answers">
+                <button class="btn quiz-btn mt-[18px]" data-answer="myth">Myth</button>
+                <button class="btn quiz-btn mt-[18px]" data-answer="fact">Fact</button>
+            </div>
+            <p id="quiz-feedback" class="result"></p>
+            <div class="flex flex-wrap justify-center gap-3"><button id="quiz-next" class="btn mt-[18px]" hidden>Next</button></div>
+        </article>
+
+        <!-- STEP 4 -->
+        <article class="mx-auto my-5 max-w-[800px] rounded-xl bg-white p-6 shadow-md max-[480px]:p-5">
+            <span class="mb-2 inline-block rounded-full bg-sky-600 px-3 py-[3px] text-[13px] font-bold text-white">Step 4</span>
+            <h3 class="card-title">Test and generate a password</h3>
+            <label class="field-label" for="password-input">Type a password to test</label>
+            <input type="text" id="password-input" class="field" placeholder="Enter a password" autocomplete="off">
+            <p id="strength-text" class="result"></p>
+
+            <label class="field-label mt-4" for="gen-length">Generator length: <span id="gen-length-value">16</span></label>
+            <input type="range" id="gen-length" class="mb-1 w-full" min="8" max="32" value="16">
+            <label class="my-3 block font-bold"><input type="checkbox" id="gen-symbols" class="mr-2" checked>Include symbols</label>
+            <div class="flex flex-wrap justify-center gap-3"><button id="generate-btn" class="btn mt-[18px]">Generate Strong Password</button></div>
+            <p id="generated-password" class="mt-4 break-all text-center font-mono text-lg"></p>
+            <p class="hint">Do not type a password you really use. This is only a practice box.</p>
+        </article>
+    </section>
+
+    <!-- TASK 03: ONE COMPLETE INTERACTION -->
+    <section id="help" class="scroll-mt-20 bg-white px-[8%] py-[70px] max-md:px-[6%] max-md:py-[50px]">
+        <h2 class="sec-title">I Already Clicked It. What Now?</h2>
+        <p class="sec-intro">Choose what happened and get a step-by-step recovery plan. Tick each step as you finish it.</p>
+
+        <div class="mx-auto mb-[30px] flex max-w-[900px] flex-wrap justify-center gap-3">
+            <button class="btn-choice incident-btn" data-incident="link" aria-pressed="false">I clicked a suspicious link</button>
+            <button class="btn-choice incident-btn" data-incident="install" aria-pressed="false">I installed an unknown .apk / .exe</button>
+            <button class="btn-choice incident-btn" data-incident="password" aria-pressed="false">I typed my password on a fake page</button>
+            <button class="btn-choice incident-btn" data-incident="money" aria-pressed="false">I sent money or card details</button>
+        </div>
+
+        <div id="incident-panel" class="mx-auto max-w-[700px] rounded-xl bg-slate-100 p-7" aria-live="polite">
+            <p id="incident-empty" class="text-center text-slate-500">No situation selected yet. Pick one above to see what to do.</p>
+
+            <div id="incident-detail" hidden>
+                <span id="incident-severity" class="mb-2.5 inline-block rounded-full px-3 py-[3px] text-[13px] font-bold text-white"></span>
+                <h3 id="incident-title" class="mb-2 text-[22px] font-bold text-sky-700"></h3>
+                <p id="incident-summary" class="mb-[18px]"></p>
+                <ol id="incident-steps" class="list-none p-0"></ol>
+                <p id="incident-progress" class="result"></p>
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+<footer class="bg-slate-900 p-[25px] text-center text-white">
+    <p id="footer-text">2026 CyberShield</p>
+</footer>
+
+
+<!-- Classes that only script.js adds. Listing them here lets the Tailwind CDN see them when the page loads. -->
+<div hidden aria-hidden="true" class="text-green-700 text-amber-700 text-red-700 border-red-600 bg-amber-700 bg-orange-700 bg-red-700 mb-2 flex flex-wrap items-center gap-2.5 rounded-lg bg-slate-100 px-3.5 py-2.5 data-[done=true]:bg-green-100 min-w-[110px] flex-1 font-bold min-w-[160px] flex-[2] break-all btn px-3 py-1.5 text-sm mb-2.5 inline-block rounded-full px-3 py-[3px] text-[13px] text-white group bg-white flex cursor-pointer items-start gap-3 px-[15px] py-3 mt-1.5 group-data-[done=true]:text-slate-600 group-data-[done=true]:line-through"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
