@@ -1,0 +1,54 @@
+{
+    "status": "success",
+    "message": "Sample data for the CyberShield practice project (fictional companies).",
+    "data": [
+        {
+            "id": 1,
+            "title": "ShopKita Online Store",
+            "breachDate": "2026-08-14",
+            "accountsExposed": 1250000,
+            "description": "A database backup of an online shop was left open on the internet. Customer logins and contact details were copied.",
+            "dataLeaked": ["Emails", "Passwords", "Phone numbers"]
+        },
+        {
+            "id": 2,
+            "title": "BayarCepat E-Wallet",
+            "breachDate": "2026-07-02",
+            "accountsExposed": 480000,
+            "description": "Attackers used passwords leaked from other sites to log in to wallet accounts. Users who reused passwords lost money.",
+            "dataLeaked": ["Emails", "Transaction history"]
+        },
+        {
+            "id": 3,
+            "title": "KampusNet Student Portal",
+            "breachDate": "2026-05-21",
+            "accountsExposed": 92000,
+            "description": "A phishing email tricked a staff member into typing their password on a fake login page. The attacker then exported student records.",
+            "dataLeaked": ["Names", "Emails", "Student IDs"]
+        },
+        {
+            "id": 4,
+            "title": "FotoBagi Photo Sharing",
+            "breachDate": "2026-03-09",
+            "accountsExposed": 3400000,
+            "description": "A weak admin password protected the control panel. After it was guessed, user profiles and password hashes were downloaded.",
+            "dataLeaked": ["Usernames", "Emails", "Passwords"]
+        },
+        {
+            "id": 5,
+            "title": "SehatKu Clinic Booking",
+            "breachDate": "2026-01-30",
+            "accountsExposed": 15000,
+            "description": "A fake mobile app sent by chat message asked staff to install an .apk file, which gave attackers access to the booking system.",
+            "dataLeaked": ["Names", "Phone numbers", "Appointment details"]
+        },
+        {
+            "id": 6,
+            "title": "GameZone Forum",
+            "breachDate": "2025-11-12",
+            "accountsExposed": 760000,
+            "description": "An old forum software with a known security hole was never updated. Attackers copied the whole member table.",
+            "dataLeaked": ["Usernames", "Emails", "Passwords", "IP addresses"]
+        }
+    ]
+}

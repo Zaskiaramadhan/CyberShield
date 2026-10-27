@@ -36,7 +36,10 @@
             <li><a class="text-[15px] hover:text-sky-400" href="#checklist">Security Checklist</a></li>
             <li><a class="text-[15px] hover:text-sky-400" href="#social-engineering">Social Engineering</a></li>
             <li><a class="text-[15px] hover:text-sky-400" href="#password">Password Security</a></li>
+            <li><a class="text-[15px] hover:text-sky-400" href="#breaches">Data Breaches</a></li>
+            <li><a class="text-[15px] hover:text-sky-400"href="program.php">Program Prioritas</a></li>
             <li><a class="text-[15px] hover:text-sky-400" href="#help">Need Help?</a></li>
+           
         </ul>
     </nav>
 </header>
@@ -233,6 +236,40 @@
         </article>
     </section>
 
+    <!-- SPRINT 03: CONNECT TO AN API (Fetch + JSON + DOM + loading + error) -->
+    <section id="breaches" class="scroll-mt-20 bg-slate-100 px-[8%] py-[70px] max-md:px-[6%] max-md:py-[50px]">
+        <h2 class="sec-title">Latest Data Breaches</h2>
+        <p class="sec-intro">Sample breach data is fetched from the CyberShield JSON API when this page opens. Each card is created dynamically from the response.</p>
+
+        <!-- Task 01: connect to the API -->
+        <div class="mx-auto mb-6 flex max-w-[700px] flex-wrap justify-center gap-3">
+            <button id="breach-load" class="btn">Reload breach data</button>
+            <button id="breach-fail" class="btn-choice">Simulate an error</button>
+        </div>
+
+        <!-- Demo: show your data flow (request -> response -> JSON -> display) -->
+        <ol id="flow" class="mx-auto mb-5 grid max-w-[700px] list-none grid-cols-4 gap-2 p-0 text-center text-sm font-bold max-[480px]:grid-cols-2" aria-label="Data flow">
+            <li data-step="request" class="rounded-lg border-2 border-transparent bg-white px-2 py-3 data-[state=active]:border-sky-600 data-[state=active]:bg-sky-100 data-[state=done]:bg-green-100 data-[state=error]:border-red-600 data-[state=error]:bg-red-100">1. Request<small class="block font-normal text-slate-500">fetch()</small></li>
+            <li data-step="response" class="rounded-lg border-2 border-transparent bg-white px-2 py-3 data-[state=active]:border-sky-600 data-[state=active]:bg-sky-100 data-[state=done]:bg-green-100 data-[state=error]:border-red-600 data-[state=error]:bg-red-100">2. Response<small class="block font-normal text-slate-500">response.ok</small></li>
+            <li data-step="json" class="rounded-lg border-2 border-transparent bg-white px-2 py-3 data-[state=active]:border-sky-600 data-[state=active]:bg-sky-100 data-[state=done]:bg-green-100 data-[state=error]:border-red-600 data-[state=error]:bg-red-100">3. JSON<small class="block font-normal text-slate-500">response.json()</small></li>
+            <li data-step="display" class="rounded-lg border-2 border-transparent bg-white px-2 py-3 data-[state=active]:border-sky-600 data-[state=active]:bg-sky-100 data-[state=done]:bg-green-100 data-[state=error]:border-red-600 data-[state=error]:bg-red-100">4. Display<small class="block font-normal text-slate-500">DOM</small></li>
+        </ol>
+
+        <!-- Task 03: handle API state (loading / success / error) -->
+        <p id="breach-status" class="result flex items-center justify-center gap-2" aria-live="polite" aria-busy="false">
+            <span id="breach-spinner" class="hidden h-5 w-5 animate-spin rounded-full border-2 border-sky-600 border-t-transparent" aria-hidden="true"></span>
+            <span id="breach-status-text"></span>
+        </p>
+
+        <div id="breach-error" class="mx-auto mb-6 max-w-[700px] rounded-lg border-l-[6px] border-red-700 bg-white px-5 py-[18px] text-center" hidden>
+            <p id="breach-error-text" class="mb-3 font-bold text-red-700"></p>
+            <button id="breach-retry" class="btn">Try again</button>
+        </div>
+
+        <!-- Task 02: display API data -->
+        <div id="breach-list" class="mx-auto grid max-w-[1000px] grid-cols-3 gap-5 max-md:grid-cols-2 max-[480px]:grid-cols-1"></div>
+    </section>
+
     <!-- TASK 03: ONE COMPLETE INTERACTION -->
     <section id="help" class="scroll-mt-20 bg-white px-[8%] py-[70px] max-md:px-[6%] max-md:py-[50px]">
         <h2 class="sec-title">I Already Clicked It. What Now?</h2>
@@ -264,11 +301,15 @@
 <footer class="bg-slate-900 p-[25px] text-center text-white">
     <p id="footer-text">2026 CyberShield</p>
 </footer>
+<!-- Classes added by feature scripts, listed for the Tailwind CDN. -->
+<div hidden aria-hidden="true" class="text-green-700 text-amber-700 text-red-700 border-red-600 bg-amber-700 bg-orange-700 bg-red-700 mb-2 flex flex-wrap items-center gap-2.5 rounded-lg bg-slate-100 px-3.5 py-2.5 data-[done=true]:bg-green-100 min-w-[110px] flex-1 font-bold min-w-[160px] flex-[2] break-all btn px-3 py-1.5 text-sm mb-2.5 inline-block rounded-full px-3 py-[3px] text-[13px] text-white group bg-white flex cursor-pointer items-start gap-3 px-[15px] py-3 mt-1.5 group-data-[done=true]:text-slate-600 group-data-[done=true]:line-through flex-col shadow-md p-5 mt-auto text-slate-500 text-slate-700 bg-sky-100 text-sky-700 bg-red-100 font-normal"></div>
 
-
-<!-- Classes that only script.js adds. Listing them here lets the Tailwind CDN see them when the page loads. -->
-<div hidden aria-hidden="true" class="text-green-700 text-amber-700 text-red-700 border-red-600 bg-amber-700 bg-orange-700 bg-red-700 mb-2 flex flex-wrap items-center gap-2.5 rounded-lg bg-slate-100 px-3.5 py-2.5 data-[done=true]:bg-green-100 min-w-[110px] flex-1 font-bold min-w-[160px] flex-[2] break-all btn px-3 py-1.5 text-sm mb-2.5 inline-block rounded-full px-3 py-[3px] text-[13px] text-white group bg-white flex cursor-pointer items-start gap-3 px-[15px] py-3 mt-1.5 group-data-[done=true]:text-slate-600 group-data-[done=true]:line-through"></div>
-
-<script src="script.js"></script>
+<script src="scripts/common.js"></script>
+<script src="scripts/home.js"></script>
+<script src="scripts/checklist.js"></script>
+<script src="scripts/social-engineering.js"></script>
+<script src="scripts/password-security.js"></script>
+<script src="scripts/incident-response.js"></script>
+<script src="scripts/data-breaches.js"></script>
 </body>
 </html>

@@ -1,0 +1,292 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - navigation [ref=f1e3]:
+      - heading "CyberShield" [level=1] [ref=f1e4]
+      - list [ref=f1e5]:
+        - listitem [ref=f1e6]:
+          - link "Home" [ref=f1e7] [cursor=pointer]:
+            - /url: "#home"
+        - listitem [ref=f1e8]:
+          - link "Security Checklist" [ref=f1e9] [cursor=pointer]:
+            - /url: "#checklist"
+        - listitem [ref=f1e10]:
+          - link "Social Engineering" [ref=f1e11] [cursor=pointer]:
+            - /url: "#social-engineering"
+        - listitem [ref=f1e12]:
+          - link "Password Security" [ref=f1e13] [cursor=pointer]:
+            - /url: "#password"
+        - listitem [ref=f1e14]:
+          - link "Data Breaches" [ref=f1e15] [cursor=pointer]:
+            - /url: "#breaches"
+        - listitem [ref=f1e16]:
+          - link "Need Help?" [ref=f1e17] [cursor=pointer]:
+            - /url: "#help"
+  - main [ref=f1e18]:
+    - generic [ref=f1e19]:
+      - heading "Good evening! Stay Safe in the Digital World" [level=1] [ref=f1e20]
+      - paragraph [ref=f1e21]: Check links and files, spot scams, and stop reusing passwords.
+      - link "Start the Checklist" [ref=f1e22] [cursor=pointer]:
+        - /url: "#checklist"
+      - button "Why does this matter?" [ref=f1e23] [cursor=pointer]
+    - generic [ref=f1e24]:
+      - heading "File & Link Authenticity Checklist" [level=2] [ref=f1e25]
+      - paragraph [ref=f1e26]: An interactive guide to find out if a link or an .apk / .exe file you received is safe or dangerous.
+      - generic [ref=f1e27]:
+        - 'heading "Step 1: Scan a link or file name" [level=3] [ref=f1e28]'
+        - generic [ref=f1e29]: Paste the link or type the file name
+        - textbox "Paste the link or type the file name" [ref=f1e30]:
+          - /placeholder: e.g. http://paypal-login.xyz/verify  or  invoice.pdf.exe
+        - button "Scan" [ref=f1e31] [cursor=pointer]
+        - paragraph [ref=f1e32]: Nothing is sent anywhere. The check runs in your browser and only looks for common warning signs.
+      - 'heading "Step 2: Answer the checklist" [level=3] [ref=f1e33]'
+      - paragraph [ref=f1e34]: Tick only the statements that are true for the message or file you received.
+      - list [ref=f1e35]:
+        - listitem [ref=f1e36]:
+          - generic [ref=f1e37]:
+            - checkbox "I know the sender and the address is spelled correctly." [ref=f1e38]
+            - text: I know the sender and the address is spelled correctly.
+        - listitem [ref=f1e39]:
+          - generic [ref=f1e40]:
+            - checkbox "The link starts with https:// and the domain matches the real company." [ref=f1e41]
+            - text: The link starts with https:// and the domain matches the real company.
+        - listitem [ref=f1e42]:
+          - generic [ref=f1e43]:
+            - checkbox "The message pressures me to act right now (for example \"your account will be locked in 24 hours\")." [ref=f1e44]
+            - text: The message pressures me to act right now (for example "your account will be locked in 24 hours").
+        - listitem [ref=f1e45]:
+          - generic [ref=f1e46]:
+            - checkbox "It asks for my password, an OTP code, or a payment." [ref=f1e47]
+            - text: It asks for my password, an OTP code, or a payment.
+        - listitem [ref=f1e48]:
+          - generic [ref=f1e49]:
+            - checkbox "I expected this file, and it comes from an official store or website." [ref=f1e50]
+            - text: I expected this file, and it comes from an official store or website.
+        - listitem [ref=f1e51]:
+          - generic [ref=f1e52]:
+            - checkbox "The file is an .apk / .exe, or has a double extension like invoice.pdf.exe." [ref=f1e53]
+            - text: The file is an .apk / .exe, or has a double extension like invoice.pdf.exe.
+        - listitem [ref=f1e54]:
+          - generic [ref=f1e55]:
+            - checkbox "I hovered over the link and the real address matches the text shown." [ref=f1e56]
+            - text: I hovered over the link and the real address matches the text shown.
+      - button "Check My Result" [ref=f1e57] [cursor=pointer]
+      - paragraph
+    - generic [ref=f1e58]:
+      - heading "Social Engineering Explainer" [level=2] [ref=f1e59]
+      - paragraph [ref=f1e60]: Attackers trick people instead of hacking machines. Press Play on each card to watch how the scam unfolds.
+      - generic [ref=f1e61]:
+        - generic [ref=f1e62]: Search threats
+        - textbox "Search threats" [ref=f1e63]:
+          - /placeholder: "Try: sms, usb, email, loan..."
+        - paragraph
+      - article [ref=f1e64]:
+        - generic [ref=f1e65]: Email
+        - heading "Phishing" [level=3] [ref=f1e66]
+        - paragraph [ref=f1e67]: A fake email pretends to be a real company to steal your login details.
+        - list [ref=f1e68]:
+          - listitem [ref=f1e69]:
+            - generic [ref=f1e70]: "1"
+            - text: An email says "Your account will be locked in 24 hours!"
+          - listitem [ref=f1e71]:
+            - generic [ref=f1e72]: "2"
+            - text: You click the link inside.
+          - listitem [ref=f1e73]:
+            - generic [ref=f1e74]: "3"
+            - text: A fake login page, copied from the real one, opens.
+          - listitem [ref=f1e75]:
+            - generic [ref=f1e76]: "4"
+            - text: You type your password and the attacker receives it.
+        - button "Play" [ref=f1e78] [cursor=pointer]
+      - article [ref=f1e79]:
+        - generic [ref=f1e80]: Free stuff
+        - heading "Baiting" [level=3] [ref=f1e81]
+        - paragraph [ref=f1e82]: Something tempting is left for you to find, such as a free download or a USB drive.
+        - list [ref=f1e83]:
+          - listitem [ref=f1e84]:
+            - generic [ref=f1e85]: "1"
+            - text: You find a USB drive labelled "Salary 2026" or see a "free premium app" ad.
+          - listitem [ref=f1e86]:
+            - generic [ref=f1e87]: "2"
+            - text: Curiosity wins and you plug it in or install it.
+          - listitem [ref=f1e88]:
+            - generic [ref=f1e89]: "3"
+            - text: Malware installs silently in the background.
+          - listitem [ref=f1e90]:
+            - generic [ref=f1e91]: "4"
+            - text: The attacker gets access to your files and accounts.
+        - button "Play" [ref=f1e93] [cursor=pointer]
+      - article [ref=f1e94]:
+        - generic [ref=f1e95]: SMS
+        - heading "Smishing" [level=3] [ref=f1e96]
+        - paragraph [ref=f1e97]: Phishing sent by text message or chat, often with a short link.
+        - generic [ref=f1e98]: Your parcel is on hold. Pay the Rp5.000 fee at bit.ly/cek-paket
+        - list [ref=f1e99]:
+          - listitem [ref=f1e100]:
+            - generic [ref=f1e101]: "1"
+            - text: An urgent SMS arrives from an unknown number.
+          - listitem [ref=f1e102]:
+            - generic [ref=f1e103]: "2"
+            - text: You tap the shortened link.
+          - listitem [ref=f1e104]:
+            - generic [ref=f1e105]: "3"
+            - text: A fake payment page or an .apk download opens.
+          - listitem [ref=f1e106]:
+            - generic [ref=f1e107]: "4"
+            - text: Your card details are stolen, or the app takes over your phone.
+        - button "Play" [ref=f1e109] [cursor=pointer]
+      - article [ref=f1e110]:
+        - generic [ref=f1e111]: Personal data
+        - heading "Identity Theft" [level=3] [ref=f1e112]
+        - paragraph [ref=f1e113]: A criminal uses your personal information pretending to be you.
+        - list [ref=f1e114]:
+          - listitem [ref=f1e115]:
+            - generic [ref=f1e116]: "1"
+            - text: The attacker collects your name, birth date and phone number from public posts or leaked data.
+          - listitem [ref=f1e117]:
+            - generic [ref=f1e118]: "2"
+            - text: They use it to answer security questions or to trick customer support.
+          - listitem [ref=f1e119]:
+            - generic [ref=f1e120]: "3"
+            - text: They take over your accounts or apply for loans in your name.
+          - listitem [ref=f1e121]:
+            - generic [ref=f1e122]: "4"
+            - text: You are left with debt, lost accounts and a long recovery.
+        - button "Play" [ref=f1e124] [cursor=pointer]
+    - generic [ref=f1e125]:
+      - heading "Password Manager" [level=2] [ref=f1e126]
+      - paragraph [ref=f1e127]: Never use one password for every account. Learn why in four short interactive steps.
+      - article [ref=f1e128]:
+        - generic [ref=f1e129]: Step 1
+        - heading "See what happens when one site is hacked" [level=3] [ref=f1e130]
+        - paragraph [ref=f1e131]: Pick how you store your passwords, then click any account to hack that site.
+        - generic [ref=f1e132]:
+          - button "Same password everywhere" [pressed] [ref=f1e133] [cursor=pointer]
+          - button "Unique password for each" [ref=f1e134] [cursor=pointer]
+        - generic [ref=f1e135]:
+          - button "Email Budi2005! Click to hack" [ref=f1e136] [cursor=pointer]:
+            - strong [ref=f1e137]: Email
+            - code [ref=f1e138]: Budi2005!
+            - generic [ref=f1e139]: Click to hack
+          - button "Social media Budi2005! Click to hack" [ref=f1e140] [cursor=pointer]:
+            - strong [ref=f1e141]: Social media
+            - code [ref=f1e142]: Budi2005!
+            - generic [ref=f1e143]: Click to hack
+          - button "Online shop Budi2005! Click to hack" [ref=f1e144] [cursor=pointer]:
+            - strong [ref=f1e145]: Online shop
+            - code [ref=f1e146]: Budi2005!
+            - generic [ref=f1e147]: Click to hack
+          - button "Banking Budi2005! Click to hack" [ref=f1e148] [cursor=pointer]:
+            - strong [ref=f1e149]: Banking
+            - code [ref=f1e150]: Budi2005!
+            - generic [ref=f1e151]: Click to hack
+          - button "Cloud storage Budi2005! Click to hack" [ref=f1e152] [cursor=pointer]:
+            - strong [ref=f1e153]: Cloud storage
+            - code [ref=f1e154]: Budi2005!
+            - generic [ref=f1e155]: Click to hack
+        - paragraph
+      - article [ref=f1e156]:
+        - generic [ref=f1e157]: Step 2
+        - heading "Try a password manager" [level=3] [ref=f1e158]
+        - paragraph [ref=f1e159]: A password manager keeps every password in an encrypted vault. You remember only one master password.
+        - generic [ref=f1e160]:
+          - generic [ref=f1e161]: Create a master password (at least 12 characters)
+          - textbox "Create a master password (at least 12 characters)" [ref=f1e162]:
+            - /placeholder: Try a long passphrase
+          - paragraph
+          - button "Unlock vault" [ref=f1e164] [cursor=pointer]
+      - article [ref=f1e165]:
+        - generic [ref=f1e166]: Step 3
+        - heading "Myth or Fact?" [level=3] [ref=f1e167]
+        - paragraph [ref=f1e168]: Question 1 of 4
+        - paragraph [ref=f1e169]: If my password is long and complex, I can safely use it on every site.
+        - generic [ref=f1e170]:
+          - button "Myth" [ref=f1e171] [cursor=pointer]
+          - button "Fact" [ref=f1e172] [cursor=pointer]
+        - paragraph
+      - article [ref=f1e173]:
+        - generic [ref=f1e174]: Step 4
+        - heading "Test and generate a password" [level=3] [ref=f1e175]
+        - generic [ref=f1e176]: Type a password to test
+        - textbox "Type a password to test" [ref=f1e177]:
+          - /placeholder: Enter a password
+        - paragraph
+        - generic [ref=f1e178]: "Generator length: 16"
+        - 'slider "Generator length: 16" [ref=f1e179]': "16"
+        - generic [ref=f1e180]:
+          - checkbox "Include symbols" [checked] [ref=f1e181]
+          - text: Include symbols
+        - button "Generate Strong Password" [ref=f1e183] [cursor=pointer]
+        - paragraph
+        - paragraph [ref=f1e184]: Do not type a password you really use. This is only a practice box.
+    - generic [ref=f1e185]:
+      - heading "Latest Data Breaches" [level=2] [ref=f1e186]
+      - paragraph [ref=f1e187]: Sample breach data is fetched from the CyberShield JSON API when this page opens. Each card is created dynamically from the response.
+      - generic [ref=f1e188]:
+        - button "Reload breach data" [ref=f1e189] [cursor=pointer]
+        - button "Simulate an error" [ref=f1e190] [cursor=pointer]
+      - list "Data flow" [ref=f1e191]:
+        - listitem [ref=f1e192]:
+          - text: 1. Request
+          - generic [ref=f1e193]: fetch()
+        - listitem [ref=f1e194]:
+          - text: 2. Response
+          - generic [ref=f1e195]: response.ok
+        - listitem [ref=f1e196]:
+          - text: 3. JSON
+          - generic [ref=f1e197]: response.json()
+        - listitem [ref=f1e198]:
+          - text: 4. Display
+          - generic [ref=f1e199]: DOM
+      - paragraph [ref=f1e200]:
+        - generic [ref=f1e201]: Loaded 6 of 6 known breaches.
+      - generic [ref=f1e202]:
+        - article [ref=f1e203]:
+          - generic [ref=f1e204]: "Breach date: 2026-08-14"
+          - heading "ShopKita Online Store" [level=3] [ref=f1e205]
+          - paragraph [ref=f1e206]: 1,250,000 accounts exposed
+          - paragraph [ref=f1e207]: A database backup of an online shop was left open on the internet. Customer logins and contact details were copied.
+          - paragraph [ref=f1e208]: "Data leaked: Emails, Passwords, Phone numbers"
+          - paragraph [ref=f1e209]: Passwords were leaked. This is why you need a unique password for every site.
+        - article [ref=f1e210]:
+          - generic [ref=f1e211]: "Breach date: 2026-07-02"
+          - heading "BayarCepat E-Wallet" [level=3] [ref=f1e212]
+          - paragraph [ref=f1e213]: 480,000 accounts exposed
+          - paragraph [ref=f1e214]: Attackers used passwords leaked from other sites to log in to wallet accounts. Users who reused passwords lost money.
+          - paragraph [ref=f1e215]: "Data leaked: Emails, Transaction history"
+        - article [ref=f1e216]:
+          - generic [ref=f1e217]: "Breach date: 2026-05-21"
+          - heading "KampusNet Student Portal" [level=3] [ref=f1e218]
+          - paragraph [ref=f1e219]: 92,000 accounts exposed
+          - paragraph [ref=f1e220]: A phishing email tricked a staff member into typing their password on a fake login page. The attacker then exported student records.
+          - paragraph [ref=f1e221]: "Data leaked: Names, Emails, Student IDs"
+        - article [ref=f1e222]:
+          - generic [ref=f1e223]: "Breach date: 2026-03-09"
+          - heading "FotoBagi Photo Sharing" [level=3] [ref=f1e224]
+          - paragraph [ref=f1e225]: 3,400,000 accounts exposed
+          - paragraph [ref=f1e226]: A weak admin password protected the control panel. After it was guessed, user profiles and password hashes were downloaded.
+          - paragraph [ref=f1e227]: "Data leaked: Usernames, Emails, Passwords"
+          - paragraph [ref=f1e228]: Passwords were leaked. This is why you need a unique password for every site.
+        - article [ref=f1e229]:
+          - generic [ref=f1e230]: "Breach date: 2026-01-30"
+          - heading "SehatKu Clinic Booking" [level=3] [ref=f1e231]
+          - paragraph [ref=f1e232]: 15,000 accounts exposed
+          - paragraph [ref=f1e233]: A fake mobile app sent by chat message asked staff to install an .apk file, which gave attackers access to the booking system.
+          - paragraph [ref=f1e234]: "Data leaked: Names, Phone numbers, Appointment details"
+        - article [ref=f1e235]:
+          - generic [ref=f1e236]: "Breach date: 2025-11-12"
+          - heading "GameZone Forum" [level=3] [ref=f1e237]
+          - paragraph [ref=f1e238]: 760,000 accounts exposed
+          - paragraph [ref=f1e239]: An old forum software with a known security hole was never updated. Attackers copied the whole member table.
+          - paragraph [ref=f1e240]: "Data leaked: Usernames, Emails, Passwords, IP addresses"
+          - paragraph [ref=f1e241]: Passwords were leaked. This is why you need a unique password for every site.
+    - generic [ref=f1e242]:
+      - heading "I Already Clicked It. What Now?" [level=2] [ref=f1e243]
+      - paragraph [ref=f1e244]: Choose what happened and get a step-by-step recovery plan. Tick each step as you finish it.
+      - generic [ref=f1e245]:
+        - button "I clicked a suspicious link" [ref=f1e246] [cursor=pointer]
+        - button "I installed an unknown .apk / .exe" [ref=f1e247] [cursor=pointer]
+        - button "I typed my password on a fake page" [ref=f1e248] [cursor=pointer]
+        - button "I sent money or card details" [ref=f1e249] [cursor=pointer]
+      - paragraph [ref=f1e251]: No situation selected yet. Pick one above to see what to do.
+  - contentinfo [ref=f1e252]:
+    - paragraph [ref=f1e253]: © 2026 CyberShield
